@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>The best solution for your needs|KDF</title>
+      <meta name="keywords" content="" />
+      <meta name="description" content="" />
+      {% load staticfiles %}
+      <link rel="stylesheet" href="{% static 'form/css/extra/skel.css'%}" />
+      <link rel="stylesheet" href="{% static 'form/css/extra/style.css'%}" />
+      <link rel="stylesheet" href="{% static 'form/css/extra/style-xlarge.css'%}" />
+   </head>
+   {% include "../../Resources/form/Form_header.html" %}
+   
+   {% load i18n %}
+
+   <section id="main" class="wrapper">
+      <div class="container">
+         <header class="major">
+            <h2>KDF Capital Ventures</h2>
+            <!--<p>Lorem ipsum dolor sit amet nullam id egestas urna aliquam</p>-->
+         </header>
+         <div class="formbox">
+            <p>Step {{wizard.steps.step1}} of {{ wizard.steps.count }} </p>
+            {% for field in form %}
+            {{field.error}}
+            {% endfor %}
+            <form method="post" enctype="multipart/form-data">
+
+               {% csrf_token %}
+               {{ wizard.form.media }}
+               {{ wizard.management_form }}
+               {% if wizard.form.forms %}
+               {{ wizard.form.management_form }}
+               {% for form in wizard.form.forms %}
+               {{ form.as_p }}
+               {% endfor %}
+               {% else %}
+               {{ wizard.form.as_p }}
+               {% endif %}
+               {% if wizard.steps.prev %}
+               <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.first }}">{% trans "first step" %}</button>
+               <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}">{% trans "prev step" %}</button>
+               {% endif %}
+               <input type="submit" name="submit" value="{% trans "Next" %}" />
+            </form>
+         </div>
+      </div>
+   </section>

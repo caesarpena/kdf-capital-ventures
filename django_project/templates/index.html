@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+   <!-- Head -->
+   {% load staticfiles %}
+   {% include "Resources/head.html" %}
+   <!-- //Head -->
+   <!-- Body -->
+   <body>
+      <!-- Header -->
+      <div class="header w3layouts-1">
+         <!-- Top-Bar -->
+         {% include "Resources/topbar.html" %}
+         <!-- //Top-Bar -->
+         <!-- Slider -->
+         {% include "Resources/Home/slider.html" %}
+         <!-- //Slider -->
+      </div>
+      <!-- //Header -->
+      <!-- agileinfo -->
+      {% include "Resources/Home/LoansSection.html" %}
+      <!-- //agileinfo -->
+      <!-- friend-agent -->
+      {% include "Resources/Home/ServiceSection.html" %}
+      <!-- //friend-agent -->	
+      <!-- w3l-1 -->	
+      {% include "Resources/Home/AboutShort.html" %}
+      <!--/ w3l-1 -->
+      <!-- subscribe -->
+      {% include "Resources/subscribe.html" %}
+      <!--// subscribe -->
+      <!-- footer -->
+      {% include "Resources/footer.html" %}
+      <!-- footer -->
+      <!--FlexSlider-->
+      <link rel="stylesheet" href="{% static 'css/flexslider.css' %}" type="text/css" media="screen" />
+      <script defer src="{% static 'js/jquery.flexslider.js' %}"></script>
+      <script type="text/javascript">
+         $(window).load(function(){
+           $('.flexslider').flexslider({
+         	animation: "slide",
+         	start: function(slider){
+         	  $('body').removeClass('loading');
+         	}
+           });
+         });
+          
+      </script>
+      <!--End-slider-script-->
+      <script src="{% static 'js/easyResponsiveTabs.js' %}" type="text/javascript"></script>
+      <script type="text/javascript">
+         $(document).ready(function () {
+         	$('#horizontalTab').easyResponsiveTabs({
+         		type: 'default', //Types: default, vertical, accordion           
+         		width: 'auto', //auto or any width like 600px
+         		fit: true   // 100% fit in a container
+         	});
+         });
+           
+      </script>
+   </body>
+   <!-- //Body -->
+</html>
